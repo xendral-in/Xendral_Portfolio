@@ -1,0 +1,120 @@
+#services { padding: 120px 64px; }
+
+.services-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 56px; gap: 24px; flex-wrap: wrap;
+}
+
+.grid-wrap { border: 1px solid var(--border); }
+
+.services-grid {
+  display: grid; grid-template-columns: repeat(5,1fr);
+  gap: 1px; background: var(--border);
+}
+
+.services-grid-row2 {
+  display: grid; grid-template-columns: repeat(5,1fr);
+  gap: 1px; background: var(--border); border-top: none;
+}
+
+.svc-card {
+  background: var(--card); padding: 36px 26px;
+  position: relative; overflow: hidden; cursor: default;
+  transition: background .3s, transform .3s, box-shadow .3s;
+  display: flex; flex-direction: column; gap: 14px;
+}
+
+.svc-card::before {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 0; height: 0; border-style: solid;
+  border-width: 0 28px 28px 0;
+  border-color: transparent rgba(74,224,96,0.15) transparent transparent;
+  transition: border-width .3s;
+}
+
+.svc-card:hover::before {
+  border-width: 0 40px 40px 0;
+  border-color: transparent rgba(74,224,96,0.3) transparent transparent;
+}
+
+.svc-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--green);
+  transform: scaleX(0); transform-origin: left; transition: transform .4s;
+}
+
+.svc-card:hover {
+  background: #0f1c24; transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(74,224,96,0.1);
+}
+
+.svc-card:hover::after { transform: scaleX(1); }
+
+.svc-num { font-family: var(--font-m); font-size: 9px; color: var(--gray2); letter-spacing: 2px; }
+
+/* Remove the square box completely — just the SVG with glow */
+.svc-icon {
+  width: 54px; height: 54px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .3s;
+  background: transparent !important;
+  border: none !important;
+}
+
+.svc-icon-3d {
+  border: none !important;
+  background: transparent !important;
+}
+
+.svc-svg-icon {
+  width: 42px;
+  height: 42px;
+  display: block;
+  filter: drop-shadow(0 0 6px rgba(74,224,96,0.5)) drop-shadow(0 0 14px rgba(74,224,96,0.2));
+  transition: filter .3s, transform .3s;
+}
+
+.svc-card:hover .svc-svg-icon {
+  filter: drop-shadow(0 0 12px rgba(74,224,96,0.9)) drop-shadow(0 0 28px rgba(74,224,96,0.5)) drop-shadow(0 0 48px rgba(74,224,96,0.2));
+  transform: scale(1.1) translateY(-3px);
+}
+
+/* No box on hover either */
+.svc-card:hover .svc-icon {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.svc-name {
+  font-family: var(--font-h); font-size: 12px;
+  font-weight: 700; letter-spacing: .5px; line-height: 1.4;
+}
+
+.svc-name .g { color: var(--green); }
+
+.svc-desc { font-size: 12px; color: var(--gray); line-height: 1.7; flex: 1; }
+
+.svc-link {
+  font-family: var(--font-m); font-size: 9px; color: var(--green);
+  text-decoration: none; letter-spacing: 1px;
+  opacity: 0; transform: translateY(4px); transition: all .3s; display: inline-block;
+}
+
+.svc-card:hover .svc-link { opacity: 1; transform: translateY(0); }
+
+@media(max-width: 1100px) {
+  #services { padding: 80px 32px; }
+  .services-grid, .services-grid-row2 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media(max-width: 700px) {
+  #services { padding: 60px 16px; }
+  .services-grid, .services-grid-row2 { grid-template-columns: repeat(2, 1fr); }
+  .svc-card { padding: 24px 18px; }
+  .svc-name { font-size: 11px; }
+}
+
+@media(max-width: 420px) {
+  .services-grid, .services-grid-row2 { grid-template-columns: 1fr; }
+}
